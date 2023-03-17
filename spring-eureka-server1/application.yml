@@ -1,0 +1,22 @@
+logging:
+  config: ./logback-spring.xml
+spring:
+  application:
+    name: eureka-server1
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8888
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+#spring.config.import=optional:configserver:http://root:s3cr3t@localhost:8888
+
+     

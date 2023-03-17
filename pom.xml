@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.spring</groupId>
+    <artifactId>spring-colud-parent</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>spring-colud-parent</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <spring.boot.version>2.7.8</spring.boot.version>
+        <spring.cloud.version>2021.0.5</spring.cloud.version>
+        <jackson.version>2.13.4</jackson.version>
+        <lombok.version>1.18.24</lombok.version>		
+    </properties>
+
+    <modules>
+        <module>spring-common</module>
+        <module>spring-config-client</module>
+        <module>spring-config-server</module>
+        <module>spring-eureka-server1</module>
+        <module>spring-eureka-server2</module>
+        <module>spring-eureka-service-provider1</module>
+        <module>spring-eureka-service-provider2</module>
+        <module>spring-eureka-openfeign-invoke1</module>
+        <module>spring-eureka-openfeign-invoke2</module>
+        <module>spring-eureka-gateway</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

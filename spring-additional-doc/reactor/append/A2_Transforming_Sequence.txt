@@ -1,0 +1,82 @@
+I want to transform existing data:
+    on a 1-to-1 basis (eg. strings to their length): map
+    by just casting it: cast
+    in order to materialize each source value’s index: Flux#index
+
+    on a 1-to-n basis (eg. strings to their characters): flatMap + use a factory method
+    on a 1-to-n basis with programmatic behavior for each source element and/or state: handle
+
+    running an asynchronous task for each source item (eg. urls to http request): flatMap + an async Publisher-returning method
+        ignoring some data: conditionally return a Mono.empty() in the flatMap lambda
+        retaining the original sequence order: Flux#flatMapSequential (this triggers the async processes immediately but reorders the results)
+        where the async task can return multiple values, from a Mono source: Mono#flatMapMany
+
+I want to add pre-set elements to an existing sequence:
+    at the start: Flux#startWith(T…​)
+    at the end: Flux#concatWith(T…​)
+
+I want to aggregate a Flux: (the Flux# prefix is assumed below)
+    into a List: collectList, collectSortedList
+    into a Map: collectMap, collectMultiMap
+    into an arbitrary container: collect
+
+    into the size of the sequence: count
+        by applying a function between each element (eg. running sum): reduce
+       ​but emitting each intermediary value: scan
+
+    into a boolean value from a predicate:
+        applied to all values (AND): all
+        applied to at least one value (OR): any
+        testing the presence of any value: hasElements
+        testing the presence of a specific value: hasElement
+
+I want to combine publishers（合并publishers）
+    （完成前面publishers,才继续订阅后续publishers）in sequential order: Flux#concat or .concatWith(other)
+    but delaying any error until remaining publishers have been emitted: Flux#concatDelayError
+
+    (紧急订阅后续publishers，按订阅顺序)but eagerly subscribing to subsequent publishers: Flux#mergeSequential
+
+    (推送元素顺序)in emission order (combined items emitted as they come): Flux#merge / .mergeWith(other)
+
+with different types (transforming merge): Flux#zip / Flux#zipWith
+    by pairing values:
+        from 2 Monos into a Tuple2: Mono#zipWith
+        from n Monos when they all completed: Mono#zip
+
+    by coordinating their termination(协调终止):
+        from 1 Mono and any source into a Mono<Void>: Mono#and
+        from n sources when they all completed: Mono#when
+
+into an arbitrary container type:
+    each time all sides have emitted: Flux#zip (up to the smallest cardinality) 最小的元素为基准
+    each time a new value arrives at either side: Flux#combineLatest 组合最新的元素
+
+only considering the sequence that emits first:
+    Flux#first, Mono#first,
+    mono.or (otherMono).or(thirdMono), flux.or(otherFlux).or(thirdFlux)
+
+triggered by the elements in a source sequence: switchMap (each source element is mapped to a Publisher)
+triggered by the start of the next publisher in a sequence of publishers: switchOnNext
+
+I want to repeat an existing sequence: repeat
+    ​but at time intervals: Flux.interval(duration).flatMap(tick → myExistingPublisher)
+
+I have an empty sequence but…​
+    I want a value instead: defaultIfEmpty
+    I want another sequence instead: switchIfEmpty
+
+I have a sequence but I am not interested in values: ignoreElements
+    ​and I want the completion represented as a Mono: then()
+    ​and I want to wait for another task to complete at the end: thenEmpty
+
+    ​and I want to switch to another Mono at the end: Mono#then(mono)
+     and I want to emit a single value at the end: Mono#thenReturn(T)
+
+    ​and I want to switch to a Flux at the end: thenMany
+
+I have a Mono for which I want to defer completion…​
+    ​until another publisher, which is derived from this value, has completed: Mono#delayUntil(Function)
+
+I want to expand elements recursively into a graph of sequences and emit the combination…​
+    expanding the graph breadth first: expand(Function)
+    expanding the graph depth first: expandDeep(Function)

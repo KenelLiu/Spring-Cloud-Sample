@@ -1,0 +1,39 @@
+server:
+  port: 8888
+logging:
+  config: ./logback-spring.xml
+spring:
+  application:
+    name: spring-config-server
+  profiles:
+    active: dev
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: file:///C:/DEV/IOT/spring-cloud/spring-config-file
+          force-pull: true
+          default-label: master
+      label: master
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+#spring.cloud.config.server.git.uri=ssh://localhost/config-repo
+#spring.cloud.config.server.git.clone-on-start=true
+#增加安全spring-boot-starter-security
+#spring.security.user.name=root
+#spring.security.user.password=s3cr3t
+# curl http://root:s3cr3t@localhost:8888/配置文件/default或master
+# curl http://root:s3cr3t@localhost:8888/配置文件/dev或qa或prod/default或master
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  security:
+    enabled: false
+
+     

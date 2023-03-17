@@ -1,0 +1,28 @@
+server:
+  port: 8762
+eureka:
+  datacenter: cloud
+  environment: dev
+  instance:
+    appname: eureka-server
+    hostname: server2
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    #租期更新时间间隔
+    lease-renewal-interval-in-seconds: 10
+    #租期到期时间
+    lease-expiration-duration-in-seconds: 60
+  server:
+    ##关闭自我保护
+    enable-self-preservation: false
+    ##清理服务器
+    eviction-interval-timer-in-ms: 5000
+  client:
+    ##注册自身到eureka服务器
+    ##register-with-eureka: false
+    ##是否从eureka服务器获取注册信息
+    ##fetch-registry: false
+    healthcheck:
+      enabled: true
+    service-url:
+      defaultZone: http://server1:8761/eureka/

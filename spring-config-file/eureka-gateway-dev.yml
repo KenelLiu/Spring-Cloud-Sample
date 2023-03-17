@@ -1,0 +1,57 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: id_route
+          uri: http://httpbin.org/
+          predicates:
+            - After=2023-03-14T09:45:47.789+08:00[Asia/Shanghai]
+            - Before=2025-05-14T09:45:47.789+08:00[Asia/Shanghai]
+            - Between=2023-03-12T09:42:47.789+08:00[Asia/Shanghai],2025-05-14T09:45:47.789+08:00[Asia/Shanghai]
+            - Cookie=ssoToken,eabcda.*
+            - Header=X-Request-Id,^[a-zA-Z]\d+
+            - Host={segment}.server.com
+            - Method=GET,POST
+            - Path=/delay/{time}
+            - Query=key,\d+
+            - RemoteAddr=10.27.89.249/24
+            - Weight=group1, 10
+            - XForwardedRemoteAddr=10.27.89.249/24
+          filters:
+            - AddRequestHeader=X-Request-time,{segment}-{time}
+            - AddRequestParameter=color, yellow
+            - AddResponseHeader=X-Response-Color,blue-{time}
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin,RETAIN_FIRST
+            - MapRequestHeader=type, X-Request-type
+            - PrefixPath=/mypath
+            - SetPath=/delay/{time}
+            - SetRequestHeader=foo, bar-{segment}
+#            - name: CircuitBreaker
+#              args:
+#                name: myCircuitBreaker
+#                fallbackUri: forward:/fallback
+#                statusCodes:
+#                  - 500
+#                  - "NOT FOUND"
+        - id: weight_low
+          uri: http://httpbin.org/
+          predicates:
+            - Weight=group1, 2
+eureka:
+  instance:
+    appname: eureka-gateway
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    #租期更新时间间隔
+    lease-renewal-interval-in-seconds: 10
+    #租期到期时间
+    lease-expiration-duration-in-seconds: 60
+  client:
+    ##注册自身到eureka服务器
+    ##register-with-eureka: false
+    ##是否从eureka服务器获取注册信息
+    ##fetch-registry: false
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://server1:8761/eureka/,http://server2:8762/eureka/

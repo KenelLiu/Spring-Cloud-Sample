@@ -1,0 +1,19 @@
+Processor (Code)
+public interface Processor<T, R> extends Subscriber<T>, Publisher<R> {
+
+}
+
+Rule:
+1.A Processor represents a processing stage—which is both a Subscriber and a Publisher and MUST obey the contracts of
+  both
+
+2.A Processor MAY choose to recover an onError signal. If it chooses to do so, it MUST consider the Subscription cancelled,
+   otherwise it MUST propagate the onError signal to its Subscribers immediately.
+
+While not mandated, it can be a good idea to cancel a Processor´s upstream Subscription when/if its last Subscriber cancels
+their Subscription, to let the cancellation signal propagate upstream.
+
+
+Asynchronous vs Synchronous Processing:
+    The Reactive Streams API prescribes(规定) that all processing of elements (onNext) or termination signals (onError,
+    onComplete) MUST NOT block the Publisher. However, each of the on* handlers can process the events synchronously or asynchronously.

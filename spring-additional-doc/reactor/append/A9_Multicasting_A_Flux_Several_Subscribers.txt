@@ -1,0 +1,14 @@
+I want to connect multiple Subscriber to a Flux:
+    and decide when to trigger the source with connect(): publish() (returns a ConnectableFlux)
+    and trigger the source immediately (late subscribers see later data): share()
+    and permanently connect the source when enough subscribers have registered: .publish().autoConnect(n)
+    and automatically connect and cancel the source when subscribers go above/below the threshold: .publish().refCount(n)
+
+…​but giving a chance for new subscribers to come in before cancelling: .publish().refCountGrace(n, Duration)
+
+I want to cache data from a Publisher and replay it to later subscribers:
+    up to n elements: cache(int)
+    caching latest elements seen within a Duration (Time-To-Live): cache(Duration)
+    but retain no more than n elements: cache(int, Duration)
+
+but without immediately triggering the source: Flux#replay (returns a ConnectableFlux)

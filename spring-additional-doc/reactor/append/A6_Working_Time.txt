@@ -1,0 +1,13 @@
+I want to associate emissions with a timing (Tuple2<Long, T>) measured…​
+
+since subscription: elapsed
+
+since the dawn of time (well, computer time): timestamp
+
+I want my sequence to be interrupted if there is too much delay between emissions: timeout
+I want to get ticks from a clock, regular time intervals: Flux#interval
+I want to emit a single 0 after an initial delay: static Mono.delay.
+
+I want to introduce a delay:
+    between each onNext signal: Mono#delayElement, Flux#delayElements
+    before the subscription happens: delaySubscription

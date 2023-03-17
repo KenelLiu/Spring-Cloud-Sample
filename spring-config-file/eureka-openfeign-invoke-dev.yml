@@ -1,0 +1,29 @@
+eureka:
+  instance:
+    appname: eureka-openfeign-invoke
+    prefer-ip-address: false
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    #租期更新时间间隔
+    lease-renewal-interval-in-seconds: 10
+    #租期到期时间
+    lease-expiration-duration-in-seconds: 60
+  client:
+    ##注册自身到eureka服务器
+    ##register-with-eureka: false
+    ##是否从eureka服务器获取注册信息
+    ##fetch-registry: false
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://server1:8761/eureka/,http://server2:8762/eureka/
+feign:
+  circuitbreaker:
+    enabled: true
+  httpclient:
+    max-connections: 200
+    max-connections-per-route: 50
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000

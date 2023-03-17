@@ -1,0 +1,32 @@
+I want to create an erroring sequence: error…​
+    to replace the completion of a successful Flux: .concat(Flux.error(e))
+    to replace the emission of a successful Mono: .then(Mono.error(e))
+    if too much time elapses between onNexts: timeout
+    lazily: error(Supplier<Throwable>)
+
+I want the try/catch equivalent of:
+    throwing: error
+    catching an exception:
+    and falling back to a default value: onErrorReturn
+    and falling back to another Flux or Mono: onErrorResume
+    and wrapping and re-throwing: .onErrorMap(t → new RuntimeException(t))
+
+    the finally block: doFinally
+    the using pattern from Java 7: using factory method
+
+I want to recover from errors…​
+by falling back:
+    to a value: onErrorReturn
+    to a Publisher or Mono, possibly different ones depending on the error: Flux#onErrorResume and Mono#onErrorResume
+
+by retrying…​
+    with a simple policy (max number of attempts): retry(), retry(long)
+    triggered by a companion control Flux: retryWhen
+    using a standard backoff strategy (exponential backoff with jitter): retryWhen(Retry.backoff(…​)) (see also other factory methods in Retry)
+
+I want to deal with backpressure "errors" (request max from upstream and apply the strategy when downstream does not produce enough request)…​
+    by throwing a special IllegalStateException: Flux#onBackpressureError
+    by dropping excess values: Flux#onBackpressureDrop
+    except the last one seen: Flux#onBackpressureLatest
+    by buffering excess values (bounded or unbounded): Flux#onBackpressureBuffer
+   ​and applying a strategy when bounded buffer also overflows: Flux#onBackpressureBuffer with a BufferOverflowStrategy

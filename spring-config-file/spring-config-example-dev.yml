@@ -1,0 +1,3 @@
+microservice-one:
+  value: 50
+message: hello-dev-1
