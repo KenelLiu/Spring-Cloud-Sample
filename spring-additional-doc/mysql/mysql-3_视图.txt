@@ -1,0 +1,16 @@
+ select concat('mysqldump -uroot -pabc123 -h10.27.122.38 --default-character-set=utf8 -B ',TABLE_SCHEMA,'>',TABLE_SCHEMA,'.sql') as export  from `COLUMNS`
+where TABLE_SCHEMA not in ('530','ambari','backup','information_schema','jackTest','mysql','oc_1','oceanv5_bak','performance_schema',
+'ss','ssd','sys')
+group by TABLE_SCHEMA;
+
+SELECT CONCAT("DROP VIEW IF EXISTS `",TABLE_SCHEMA,"`.`",TABLE_NAME,"`;\r\nCREATE VIEW `", TABLE_SCHEMA,"`.`",TABLE_NAME,"` as ",VIEW_DEFINITION,";")  FROM   information_schema.VIEWS;
+
+SELECT CONCAT("DROP ",TYPE," IF EXISTS `",db,"`.`", NAME,"`;\nDELIMITER ;;\nCREATE ",TYPE," `",db,"`.`",NAME,"`(", param_list,") ",IF ( TYPE = "FUNCTION", CONCAT ("RETURNS ", RETURNS, "\n"),"\n"), body_utf8,";;\nDELIMITER ;")  FROM   mysql.proc;
+
+SELECT CONCAT("DROP TRIGGER IF EXISTS `",TRIGGER_SCHEMA, "`.`", TRIGGER_NAME,"`;\nDELIMITER ;;\nCREATE TRIGGER `",TRIGGER_SCHEMA,"`.`",TRIGGER_NAME,"` ",ACTION_TIMING," ",EVENT_MANIPULATION," ON `",EVENT_OBJECT_SCHEMA,"`.`",EVENT_OBJECT_TABLE,"` FOR EACH ROW\n",ACTION_STATEMENT,";;\nDELIMITER ;")  FROM information_schema.TRIGGERS;
+
+SELECT CONCAT("DROP EVENT IF EXISTS `", EVENT_SCHEMA,     "`.`",     EVENT_NAME,     "`;\nDELIMITER ;;\nCREATE EVENT `",     EVENT_SCHEMA,     "`.`",     EVENT_NAME,     "` ON SCHEDULE EVERY ",     INTERVAL_VALUE,     " ",     INTERVAL_FIELD,     " STARTS '",     STARTS,"'",     IF ( ENDS <>NULL, CONCAT (" ENDS '",ENDS,"'"),""),         " ON COMPLETION ",     ON_COMPLETION,     " ENABLE DO ",     EVENT_DEFINITION,     ";;\nDELIMITER ;"   )  FROM   information_schema.events; 
+
+
+SELECT TIMESTAMPDIFF(MONTH,‘2017-05-01‘, DATE_FORMAT(NOW(), ‘%Y-%m-%d‘))			  
+SELECT * FROM `T_BI_BuildOrder` WHERE JSON_CONTAINS(layer->'$[*].id', '"2"', '$')

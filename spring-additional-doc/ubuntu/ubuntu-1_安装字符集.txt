@@ -1,4 +1,4 @@
-1.查看系统编码
+查看系统编码
     locale
      vi /etc/default/locale
 	若报错:
@@ -9,6 +9,4 @@
 	生成新的字符集
 	sudo locale-gen zh_CN.UTF-8
 
-2.按条件查找并删除
-    find /path/to -mtime +90 -type f -name \*.zip -exec rm -f {} \;
 
