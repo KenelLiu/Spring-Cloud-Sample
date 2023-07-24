@@ -1,0 +1,30 @@
+a.分别在5台机器用 had用户登录,并执行以下命令，生成rsa密钥对
+    [had@hadoopcm4 ~]$ ssh-keygen -t rsa
+    Generating public/private rsa key pair.
+    Enter file in which to save the key (/home/zkl/.ssh/id_rsa): 默认路径
+    Enter passphrase (empty for no passphrase): 回车，空密码
+    Enter same passphrase again:
+    Your identification has been saved in /home/had/.ssh/id_rsa.
+    Your public key has been saved in /home/had/.ssh/id_rsa.pub.
+    这将在/home/had/.ssh/目录下生成一个私钥id_rsa和一个公钥id_rsa.pub。
+
+b. 将非namenode节点(had98,had99,had100,had101)上的 id_rsa.pub传送到namenode机器上
+       cp  id_rsa.pub had98.id_rsa.pub
+       scp had98.id_rsa.pub had102:/home/had/.ssh
+       ............
+       cp  id_rsa.pub had101.id_rsa.pub
+       scp had101.id_rsa.pub had102:/home/had/.ssh 
+            
+ c. namenode节点上综合所有公钥(包括自身)并传送到所有节点上
+      cp id_rsa.pub authorized_keys   ##namenode自己的公钥
+      cat had98.id_rsa.pub >> authorized_keys
+      ....
+      cat had101.id_rsa.pub >> authorized_keys
+     
+     然后使用SSH协议将所有公钥信息authorized_keys复制到所有节点的.ssh目录下
+      scp authorized_keys had98:/home/had/.ssh
+      ......
+      scp authorized_keys had101:/home/had/.ssh
+
+     这样配置过后，所有节点之间可以相互SSH无密码登陆，可以通过命令
+     "ssh 节点ip地址"来验证。   
