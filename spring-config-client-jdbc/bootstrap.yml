@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-cloud-config-client
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8888
+      label: latest

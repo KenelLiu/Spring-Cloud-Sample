@@ -1,0 +1,24 @@
+server:
+  port: 8010
+
+spring:
+  cloud:
+    config:
+      enabled: false
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"

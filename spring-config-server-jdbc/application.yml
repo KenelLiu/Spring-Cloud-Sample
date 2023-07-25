@@ -1,0 +1,37 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: spring-cloud-config-server
+  profiles:
+    active: jdbc
+  datasource:
+    hikari:
+      connection-timeout: 5000
+      maximum-pool-size: 10
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.27.122.38:3306/icf_cmp_shd_conf?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: abc123
+  jpa:
+    show-sql: true
+  cloud:
+    config:
+      server:
+        jdbc:
+          sql: SELECT PROP_KEY, VALUE from cloud_properties where APPLICATION=? and PROFILE=? and LABEL=?
+          order: 1
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
