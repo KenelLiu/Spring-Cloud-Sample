@@ -4,7 +4,8 @@ server:
 spring:
   cloud:
     config:
-      enabled: false
+      enabled: true
+      profile: sit
     bus:
       enabled: true
       refresh:

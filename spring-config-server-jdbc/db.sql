@@ -13,4 +13,5 @@ INSERT INTO cloud_properties (APPLICATION, PROFILE, LABEL, PROP_KEY, VALUE) VALU
 ('spring-cloud-config-client', 'dev', 'latest', 'URL_B', 'https://client-urlB-dev.com'),
 ('spring-cloud-config-client', 'test', 'latest', 'URL_A', 'https://client-urlA-test.com'),
 ('spring-cloud-config-client2', 'dev', 'latest', 'URL_A', 'https://client2-urlA-dev.com'),
-('spring-cloud-config-client2', 'test', 'latest', 'URL_A', 'https://client2-urlA-test.com');
+('spring-cloud-config-client2', 'test', 'latest', 'URL_A', 'https://client2-urlA-test.com'),
+('spring-cloud-config-client', 'sit', 'latest', 'URL_A', 'https://client-urlA-sit.com');
