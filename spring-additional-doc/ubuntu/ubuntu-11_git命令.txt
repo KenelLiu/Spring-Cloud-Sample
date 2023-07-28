@@ -1,0 +1,14 @@
+1.git branch 命令查看当前存在的分支以及当前所在的分支
+$ git branch
+  branch1
+* master
+  branch2
+2.使用 git checkout 命令加上分支名切换到指定的分支。
+$ git checkout branch1
+Switched to branch 'branch1'
+
+3.要提交分支上的更改，你需要执行以下步骤：
+  首先，确保你当前在要提交更改的分支上。可以使用 git branch 命令来查看当前所在的分支[进行切换]。
+  git add .
+  git commit -m "Commit message"
+  git push origin branch1

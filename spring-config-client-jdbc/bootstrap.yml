@@ -7,3 +7,12 @@ spring:
     config:
       uri: http://localhost:8888
       label: latest
+
+#有配置在服务注册中心后 客户端找配置
+#spring.cloud.config.discovery.enabled=true
+#spring.cloud.config.discovery.serviceId=SIT-CMP-FW-CONFIG
+#spring.cloud.config.name=cmp
+#spring.cloud.config.profile=sit,icf-sit
+#spring.cloud.config.label=master
+#spring.cloud.config.username=cmpconfig
+#spring.cloud.config.password=allhealth365

@@ -1,0 +1,14 @@
+安装neo4j-3.4.18社区版 [在开发环境10.27.122.36] 下载地址 https://we-yun.com/doc/neo4j/
+
+打开配置文件neo4j.conf，该文件通常位于Neo4j安装目录的conf文件夹中。
+
+找到并取消注释（删除行首的#符号）以下配置项：
+
+dbms.connectors.default_listen_address=0.0.0.0
+此配置允许Neo4j监听所有网络接口上的连接请求。
+
+可选步骤：如果您想要在受信任的网络上访问数据库，可以将下面的配置项设置为允许所有IP地址连接：
+dbms.default_listen_address=0.0.0.0
+保存对配置文件的更改。
+
+重新启动Neo4j数据库，使更改生效。
