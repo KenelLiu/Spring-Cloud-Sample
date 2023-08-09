@@ -96,6 +96,9 @@ dpkg -l <package-name>
 dpkg --get-selections <package-name>
 下载
 sudo apt-get download apt-rdepends
+重新配置
+sudo dpkg --configure -a
+sudo dpkg --configure <package-name>
 
 五、其他应用总结
 apt-get install # ------(package 安装包)
