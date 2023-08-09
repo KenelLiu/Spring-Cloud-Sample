@@ -1,14 +1,49 @@
-1.git branch 命令查看当前存在的分支以及当前所在的分支
-$ git branch
-  branch1
-* master
-  branch2
-2.使用 git checkout 命令加上分支名切换到指定的分支。
-$ git checkout branch1
-Switched to branch 'branch1'
+https://www.runoob.com/git/git-tutorial.html
+远程:
+  1.列出所有远程主分支
+     git remote
 
-3.要提交分支上的更改，你需要执行以下步骤：
-  首先，确保你当前在要提交更改的分支上。可以使用 git branch 命令来查看当前所在的分支[进行切换]。
-  git add .
-  git commit -m "Commit message"
-  git push origin branch1
+   2.更新远程主分支[origin] 并整理分支
+       git remote update origin --prune
+
+    3.列出远程分支
+        git branch -r
+        git branch -a
+   
+    4.查看本地分支和远程分支对应关系
+        git branch -vv
+
+    5.新建本地分支gpf 与 远程gpf相关联
+        git checkout -b gpf origin/gpf
+
+本地:
+    1.创建分支
+       git branch 'new branch'		
+
+     2. 查看本地分支[名称带*号是当前分支]
+        git branch 
+
+     3.查看远程分支
+         git branch -a
+  
+     4.切换分支
+         git checkout  'new branch'
+	
+     5.删除本地分支
+         git branch -d branch_name
+
+      6.将代码暂存在本地
+         git add .
+
+       7.将代码提交到本地
+         git commit -m "Commit message"
+
+       8.将代码推送到远程指定分支
+          git push origin <branch_name>
+
+       9.如果出行hint,远程未更新。强制本地分支覆盖远程分支
+          git push origin <branch_name> -f
+   
+       10.从远程指定分支上拉取代码
+           git clone -b <branch_name>  <ssh地或者http地址>    
+  
