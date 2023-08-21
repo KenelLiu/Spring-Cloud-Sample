@@ -282,3 +282,6 @@ apt-get clean 清除无用的软件包
 
 清除处于rc状态的软件包
 dpkg -l |grep ^rc|awk '{print $2}' |tr ["\n"] [" "] | sudo xargs dpkg -P -
+
+
+dpkg -l | grep ^rc | cut -d' ' -f3|grep "openjdk" | sudo xargs dpkg --purge
