@@ -1,4 +1,10 @@
 Ubuntu 22.04 LTS 安装docker
+https://docs.docker.com/engine/install/ubuntu/#prerequisites
+检查系统里是否存在old version[unofficial]
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc;
+do sudo apt-get remove $pkg; done
+
+
 1.检查软件是否存在，若不存在则进行安装
    dpkg -l apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
    --sudo apt install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
@@ -30,5 +36,6 @@ Ubuntu 22.04 LTS 安装docker
 
 9.使 Docker 服务在每次重启时自动启动：
    sudo systemctl enable docker
-
+   
+https://docs.docker.com/engine/install/ubuntu/
 https://linux.cn/article-14871-1.html
