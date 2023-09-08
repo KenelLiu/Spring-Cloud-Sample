@@ -30,6 +30,7 @@ case "$profile" in
 	      ;;
 	test)
       profile="test-";
+      jvm_opts="";
 	     ;;
   *)
     echo "please input 2nd param [prod|test]";
