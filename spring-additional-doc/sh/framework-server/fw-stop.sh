@@ -1,10 +1,10 @@
 #!/bin/bash
 name=${1};
-profile=${2};
+profile="prod";
 if [ ! -n "${name}" ] || [ ! -n "${profile}" ];
   then
-    echo "please input run param [eureka|config|gateway] [prod|test]";
-    echo "run sample: ./fw-stop.sh eureka prod";
+    echo "please input run param [eureka|config|gateway]";
+    echo "run sample: ./fw-stop.sh eureka";
     exit 0;
 fi
 ##判断$name输入是否正确##
