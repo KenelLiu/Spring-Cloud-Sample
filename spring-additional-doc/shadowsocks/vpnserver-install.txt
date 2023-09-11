@@ -1,0 +1,50 @@
+1  ifconfig
+2  apt-get update
+3  apt-get upgrade
+4  echo 'fs.file-max = 65535' | sudo tee -a /etc/sysctl.conf
+5  sudo sysctl -p
+6  sudo tee -a /etc/security/limits.conf << EOF
+      *               hard    nofile          65535
+      *               soft    nofile          65535
+      root            hard    nofile          65535
+      root            soft    nofile          65535
+	EOF
+	
+   12  sudo sed -i '/DefaultLimitNOFILE/c DefaultLimitNOFILE=65535' /etc/systemd/*.conf
+   13  sudo systemctl daemon-reexec
+   14  echo 'net.core.default_qdisc=fq' | tee -a /etc/sysctl.conf
+   15  echo 'net.ipv4.tcp_congestion_control=bbr' |  tee -a /etc/sysctl.conf
+   16  sysctl -p
+   17  lsmod | grep bbr
+   18  apt-get install shadowsocks-libev
+   19  vi /etc/shadowsocks-libev/config.json 
+   20  nslookup s
+   22  ping googole.com
+   23  vi /etc/resolv.conf 
+   24  vi /etc/shadowsocks-libev/config.json
+   25  apt-get install dnsmasq
+   26  netstat -pln
+   27  apt-get install net-tool
+   28  apt-get install net-tools
+   30  netstat -pln
+   31  vi /etc/shadowsocks-libev/config.json 
+   32  service shadowsocks-libev restart
+   33  netstat -pln
+   34  vi /etc/shadowsocks-libev/config.json
+   36  iptables -L
+   37  netstat -pln
+   38  ifconfig
+   39  iptables 
+   40  netstat -pln
+   41  ping baidu.com
+   42  ping google.com
+   43  logread
+   45  netstat -pln
+   46  netstat -plnd
+   47  apt-get install rsyslog
+   48  tail -f /var/log/syslog .
+   49  tail -f /var/log/syslog
+   50  vi /etc/shadowsocks-libev/config.json
+   51  reboot
+   52  netstat -pln
+   53  ulimit -n
