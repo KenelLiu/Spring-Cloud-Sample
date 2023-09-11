@@ -1,0 +1,10 @@
+查询IP
+https://zh-hans.ipshu.com/my_info
+查询ip供应商
+https://tool.chinaz.com/ipWhois?q=61.173.80.179
+查询dns服务ip
+https://ipw.cn/doc/else/dns.html
+
+上海域名解释
+202.96.209.133
+8.8.4.4
