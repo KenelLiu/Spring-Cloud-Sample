@@ -2,7 +2,7 @@ ALTER TABLE assess_file CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general
 
 ALTER TABLE table_name MODIFY COLUMN column_name VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
-select concat("ALTER TABLE ",TABLE_NAME," CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")
+select concat("ALTER TABLE ",TABLE_NAME," CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;")
 FROM INFORMATION_SCHEMA.`TABLES` WHERE TABLE_SCHEMA='icf';
 
 SHOW VARIABLES WHERE Variable_name LIKE 'character_set_%' OR Variable_name LIKE 'collation%';
