@@ -1,4 +1,5 @@
 按条件查找并删除
 find /path/to -mtime +90 -type f -name \*.zip -exec rm -f {} \;
 find /var/log/hive/ -name "*" -mtime +90 -exec rm -rfv {} \;
+find /path/to -name "*.sql" -mtime +7 -print|xargs rm -rf;
 
