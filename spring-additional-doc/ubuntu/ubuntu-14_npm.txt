@@ -1,0 +1,26 @@
+1.安装nvm【 nvm-setup-v1.1.11】 可切换npm
+   安装好后,可配置setting.txt
+node_mirror: https://npm.taobao.org/mirrors/node/
+npm_mirror: https://npm.taobao.org/mirrors/npm/
+
+2.使用nvm -help查看安装命令, 安装 npm版本.为其配置阿里源
+   npm config set registry https://registry.npm.taobao.org/  
+
+3. npm 是预先安装在 Node 中的，所以一般不需要手动安装 npm。
+   相反，yarn 需要显式安装，首先，需要全局安装 yarn：
+   npm install -g yarn
+   配置阿里源
+   yarn config set registry https://registry.npm.taobao.org/
+
+4.yarn 可以通过在项目中设置所需的版本，在每个项目的基础上使用它。通过在项目的根目录中运行 yarn set version 命令来设置所需要的版本：
+   yarn set version berry
+berry 就是要设置的版本号。如果想更新到最新版本，运行：
+  yarn set version latest
+
+总结：使用 yarn，可以为每个项目使用不同的版本。而对 npm 要实现同样的需求，则需要安装 nvm（Node版本管理器）。
+
+VSCode
+以管理员身份运行vscode;
+  执行：get-ExecutionPolicy，显示Restricted，表示状态是禁止的; 
+  执行：set-ExecutionPolicy RemoteSigned;
+这时再执行get-ExecutionPolicy，就显示RemoteSigned;

@@ -1,10 +1,10 @@
 #!/bin/bash
 name=${1};
-profile=${2};
+profile="prod";
 if [ ! -n "${name}" ] || [ ! -n "${profile}" ];
   then
-    echo "please input run param [base|um|icf|solution|client] [prod|test]";
-    echo "run sample: ./biz-stop.sh base prod";
+    echo "please input run param [base|um|icf|solution|client]";
+    echo "run sample: ./biz-stop.sh base";
     exit 0;
 fi
 ##判断$name输入是否正确##
@@ -36,7 +36,7 @@ case "$profile" in
 	  exit 0;
 esac
 # 设置进程名关键词
-process_keyword="file:./${profile}bootstrap-biz.properties -jar ${profile}cmp-biz-${name}-1.0.0-SNAPSHOT.jar";
+process_keyword="file:./${profile}bootstrap-biz-${name}.properties -jar ${profile}cmp-biz-${name}-1.0.0-SNAPSHOT.jar";
 pid=$(ps -ef | grep java | grep "$process_keyword" | grep -v "grep" | awk '{print $2}')
 if [ -z "$pid" ]
  then
