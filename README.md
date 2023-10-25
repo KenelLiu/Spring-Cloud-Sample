@@ -9,7 +9,7 @@
 
    docker pull rabbitmq:3-management
    docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
-  docker run -d --name rabbit -e RABBITMQ_DEFAULT_USER=stark -e RABBITMQ_DEFAULT_PASS=1990@stark \
+   docker run -d --name rabbit -e RABBITMQ_DEFAULT_USER=stark -e RABBITMQ_DEFAULT_PASS=1990@stark \
 	-p 15672:15672 \
 	-p 5672:5672 \
 	-p 25672:25672 \
