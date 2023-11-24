@@ -1,6 +1,6 @@
 1. 制作密钥对
 ssh-keygen
-
+ssh-keygen -t rsa -b 2048
 2. 在服务器上安装公钥
 cd .ssh
 cat id_rsa.pub >> authorized_keys

@@ -13,7 +13,7 @@ alter user user() identified by "abc123";
 mysqld --console --skip-grant-tables --shared-memory 启动后，不需要密码登录
 use mysql 
 ALTER user root@'localhost' identified by '123456';
-
+CREATE user root@'localhost' identified by '123456';//依赖版本
 授权给远程登陆
 create user 'root'@'%' identified by 'abc123';
 grant all privileges on *.* to  'root'@'%';
@@ -24,3 +24,5 @@ alter user 'root'@'localhost' identified with mysql_native_password by 'abc123';
 flush privileges;
 
 select host,user,plugin from mysql.user
+
+CREATE
