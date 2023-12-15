@@ -1,15 +1,14 @@
-﻿msyql5.7之前版本
-	[mysqld]下添加skip-grant-tables，然后保存并退出
-	重启以后，执行mysql命令进入mysql命令行
-	修改root用户密码
-	MySQL> UPDATE mysql.user SET Password=PASSWORD('新密码') where USER='root';
-	MySQL> flush privileges; 
+﻿msyql5.6版本
+     [mysqld]下添加skip-grant-tables，然后保存并退出
+     重启以后，执行mysql命令进入mysql命令行
+     修改root用户密码
+     MySQL> UPDATE mysql.user SET Password=PASSWORD('新密码') where USER='root';
+     MySQL> flush privileges; 
  设置网络访问     
-        CREATE USER 'root'@'%' IDENTIFIED BY 'abc123';
-        GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'abc123' WITH GRANT OPTION;
+     CREATE USER 'root'@'%' IDENTIFIED BY 'abc123';
+     GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'abc123' WITH GRANT OPTION;
 
 5.7 普通安装
-
 #首次安装 init
 sudo bin/mysqld --defaults-file=/app/mysql-5.7.24/mysql_3307.cnf --initialize --user=mysql
 sudo bin/mysql_ssl_rsa_setup --basedir=/app/mysql-5.7.24/ --datadir=/app/mysql-5.7.24/data
@@ -27,11 +26,8 @@ sudo bin/mysql_ssl_rsa_setup --basedir=/app/mysql-5.7.24/ --datadir=/app/mysql-5
 client连接
 bin/mysql -S ./tmp/mysql_3307.socket -uroot -p
 
-
-	Linux安装版
-
+Linux安装版
 	Linux版本不一样，启动方式也有点不太一样。
-
 	/etc/init.d/mysqld start 
 	/etc/init.d/mysqld stop 
 	/etc/init.d/mysqld restart 
@@ -43,33 +39,23 @@ bin/mysql -S ./tmp/mysql_3307.socket -uroot -p
 	service mysql start 
 	service mysql stop 
 	service mysql restart
-
-
-
+	
 mysql8.0
+  //sudo apt-get install mysql-apt-config
+  sudo apt-get install mysql-server
+  sudo apt-get install mysql-shell
 
-//sudo apt-get install mysql-apt-config
-sudo apt-get install mysql-server
-sudo apt-get install mysql-shell
-
-CREATE USER 'root'@'%' IDENTIFIED BY 'password';
-CREATE USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+	CREATE USER 'root'@'%' IDENTIFIED BY 'password';
+	CREATE USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
 --修改密码加密方式
-ALTER USER 'root'@'%' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER; #修改加密规则 
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password'; #更新一下用户的密码 
+	ALTER USER 'root'@'%' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER; #修改加密规则 
+	ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password'; #更新一下用户的密码 
 --授权
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
-
-FLUSH PRIVILEGES; #刷新权限 
+	GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
+	FLUSH PRIVILEGES; #刷新权限 
 
 --查看 插件
 mysqlsh -u user --sqlc -P 3306 -e "SHOW plugins"
-
-mysqlsh name@localhost/world_x
-
-
-在文件/etc/systemd/system/multi-user.target.wants/mysql.service(也有可能是/etc/systemd/system/mysql.service这个文件)最后添加LimitNOFILE=102400
-
-然后执行systemctl daemon-reload，接着再重启mysql服务sudo service mysql restart,可以看到已经修改成功了
-
-sudo /app/mysql-5.7.24/bin/mysqld_safe --defaults-file=/app/mysql-5.7.24/mysql_3307.cnf
+	在文件/etc/systemd/system/multi-user.target.wants/mysql.service(也有可能是/etc/systemd/system/mysql.service这个文件)最后添加LimitNOFILE=102400
+	然后执行systemctl daemon-reload，接着再重启mysql服务sudo service mysql restart,可以看到已经修改成功了
+	sudo /app/mysql-5.7.24/bin/mysqld_safe --defaults-file=/app/mysql-5.7.24/mysql_3307.cnf

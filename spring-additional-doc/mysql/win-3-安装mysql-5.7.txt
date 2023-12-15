@@ -1,0 +1,32 @@
+1.配置my.ini
+[client]
+port=3308
+[mysql]
+#mysql客户端默认字符集
+default-character-set=utf8
+[mysqld]
+port=3308
+basedir=C:/MySQL/mysql-5.7.42
+datadir=C:/MySQL/mysql-5.7.42/data
+max_connections=200
+character_set_server=utf8
+collation_server=utf8_general_ci
+default_storage_engine=INNODB
+max_connections=2000
+
+2.以管理员运行cmd,进入c:\MySQL\mysql-5.7.42\bin
+安装服务: mysqld -install mysql6  
+提示: Service successfully installed 说明安装成功
+启动服务: net start mysql6 
+
+3.进入mysql:  mysql -u root -P3307 [第一次没有密码,直接回车] 
+4.修改密码：
+mysql> use mysql;
+ 设置过期
+       ALTER USER 'root'@'localhost' IDENTIFIED BY 'abc123' PASSWORD EXPIRE NEVER;
+ 设置网络访问     
+        CREATE USER 'root'@'%' IDENTIFIED BY 'abc123';
+        GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'abc123' WITH GRANT OPTION;
+
+    update user set password=password('abc123') where user='root';
+	flush privileges;
