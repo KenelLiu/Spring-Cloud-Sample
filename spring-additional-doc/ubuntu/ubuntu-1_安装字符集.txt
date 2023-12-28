@@ -9,6 +9,10 @@
 	生成新的字符集
 	sudo locale-gen zh_CN.UTF-8
 
-
+rc.local
 export LANG="zh_CN.UTF-8"
 export LANGUAGE="zh_CN:zh:en_US:en"
+
+ ~/.bashrc（对于 Bash shell）或 ~/.profile。
+export LANG=zh_CN.UTF-8
+export LANGUAGE=zh_CN:zh:en_US:en
