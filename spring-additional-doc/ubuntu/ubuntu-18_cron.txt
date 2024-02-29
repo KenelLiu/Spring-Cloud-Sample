@@ -1,0 +1,12 @@
+Cron表达式是一种用于表示定时任务的时间表达式，通常由6或7个字段组成，每个字段之间用空格分隔。
+在Spring的@Scheduled注解中，通常使用6个字段的Cron表达式，分别表示秒、分钟、小时、日期、月份、星期几。
+一个基本的Cron表达式的格式如下：
+cron 
+second minute hour day month weekday
+其中：
+second: 秒（0-59）
+minute: 分钟（0-59）
+hour: 小时（0-23）
+day: 月中的天（1-31）
+month: 月份（1-12或JAN-DEC）
+weekday: 星期几（0-6或SUN-SAT，其中0和7都代表星期日）
