@@ -1,0 +1,58 @@
+doc 文档
+	https://docs.anaconda.com/free/anacondaorg/user-guide
+
+1.下载Anaconda
+	https://repo.anaconda.com/archive/index.html
+
+2.国内清华镜像源
+	https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/
+
+3.检查Conda
+	conda --version
+	conda update conda
+
+4.环境管理
+	创建环境
+	conda create --name py34 python=3.4
+	激活环境
+	activate py34 / source activate py34
+	退出环境
+	deactivate / source deactivate
+	删除环境
+	conda remove -n py34 --all
+	可以通过以下命令查看已有的环境列表 是否已删除
+	conda info -e
+
+5.包管理
+	# 添加Anaconda的TUNA镜像
+	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+	conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+	conda config --set show_channel_urls yes
+	
+	#使用这条命令来查看在当前环境中，已安装的包和对应版本
+	conda list
+
+	#可以通过search命令检查pandas这个包是否可以通过conda来安装
+	conda search pandas
+
+	#通过install安装pandas
+	conda install pandas
+
+	#通过update更新pandas
+	conda update pandas
+
+	#通过remove卸载pandas
+	conda remove pandas
+	
+	# 更新conda到最新版本，这里conda被当作一个包处理 
+	conda update conda 
+
+	# 同样的，也可以更新anaconda到最新版本
+	conda update anaconda
+
+	# 更新python
+	# 例如我们所启用的环境是py34，使用的是python3.4,那么conda会将python升级为3.4.x系列中的最新版本
+	conda update python 
+
+
+
