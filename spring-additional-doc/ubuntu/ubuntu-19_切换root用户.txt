@@ -1,0 +1,35 @@
+linux root用户与普通用户的切换
+  
+假设现在系统的用户有超级用户：root，普通用户：ubuntu
+1.root切换到普通用户
+     su ubuntu
+
+2.普通用户切换到root
+	a.su root
+
+ 	b.sudo -s
+
+ 	c.sudo -i
+
+普通用户切换到root免密设置
+	建议切换到root用户操作
+	# 编辑sudoers文件
+	vim /etc/sudoers
+ 	# 编辑内容如下，我的普通用户是ubuntu，所以我设置ubuntu
+	ubuntu ALL=(ALL)       NOPASSWD: ALL
+ 	# 强制保存退出
+	:wq!
+ 
+	#当然最好还是建议使用visudo编辑文件，另外也可以通过给sudoers先加w权限写入，保存后减w权限
+ 
+
+Ubuntu输入su命令提示认证失败的解决办法:
+	Ubuntu安装后，root用户默认是被锁定了的，不允许登录，也不允许执行“su命令到root”。
+	对于桌面用户而言，这样可以提高安全性。但对于服务器可以设置成允许“su命令到root，但不允许root用户直接登录”。
+	因而对于Ubuntu输入su命令提示认证失败这个问题，可以通过重新设置root密码来解决。
+
+	$sudo passwd
+	[sudo] password for xxx: <--- 输入安装时那个用户的密码
+ 	Enter new UNIX password: <--- 新的root用户密码
+ 	Retype new UNIX password: <--- 重复新的root用户密码
+ 	passwd：已成功更新密码
