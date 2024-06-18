@@ -1,3 +1,0 @@
-查询ICF库里的assess_file表被别的表引用
-SELECT * FROM `information_schema`.`KEY_COLUMN_USAGE` t WHERE t.`REFERENCED_TABLE_SCHEMA`='icf'
-AND t.`REFERENCED_TABLE_NAME`='assess_file' 

@@ -1,9 +1,0 @@
-系统级字体目录：/usr/share/fonts
-用户级字体目录：~/.local/share/fonts
-如果你想要将Windows中的字体文件拷贝到Ubuntu操作系统中，可以将字体文件复制到上述任意一个字体目录中，
-并在安装后更新字体缓存。执行以下命令以更新字体缓存：
-sudo fc-cache -f -v
-
-安装fontconfig软件包，才能使用fc-cache 命令
-sudo apt update
-sudo apt install fontconfig

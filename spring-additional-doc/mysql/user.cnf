@@ -1,9 +1,0 @@
-[client]
-user=root
-password=24qmyyTT
-default-character-set=utf8mb4
-
-[mysqldump]
-user=root
-password=24qmyyTT
-default-character-set=utf8mb4

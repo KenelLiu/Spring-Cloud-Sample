@@ -1,5 +1,0 @@
-配置vim支持utf-8
-vi ~/.vimrc 在文件里配置
-set fileencoding=utf-8
-set termencoding=utf-8
-set fileencodings=utf-8,gbk
